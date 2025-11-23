@@ -1,0 +1,11 @@
+# CMake / Ninja build
+/build/
+# CMakeCache.txt
+CMakeFiles/
+compile_commands.json
+*.ninja
+*.ninja_deps
+*.ninja_log
+
+# JUCE 特有の一時ファイル
+JuceLibraryCode/
