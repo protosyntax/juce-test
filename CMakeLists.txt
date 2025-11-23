@@ -24,7 +24,21 @@ FetchContent_MakeAvailable(catch2)
 enable_testing()
 
 # JUCE
-add_subdirectory(libs/JUCE)
+# OS 判定
+if(WIN32)
+    # Windows 側の JUCE のパス
+    set(JUCE_PATH "C:/Users/Ygg/source/libs/JUCE")
+elseif(UNIX)
+    # WSL/Linux 側の JUCE のパス
+    set(JUCE_PATH "${CMAKE_SOURCE_DIR}/libs/JUCE")
+endif()
+
+# JUCE を読み込む
+if(EXISTS "${JUCE_PATH}/CMakeLists.txt")
+    add_subdirectory(${JUCE_PATH})
+else()
+    message(FATAL_ERROR "JUCE not found at ${JUCE_PATH}")
+endif()
 
 # プラグイン本体
 add_subdirectory(src/AudioPlugin)
