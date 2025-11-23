@@ -10,4 +10,4 @@ compile_commands.json
 # JUCE 特有の一時ファイル
 JuceLibraryCode/
 
-/_docs/
+_docs/
