@@ -16,7 +16,7 @@ add_subdirectory(libs/JUCE)
 
 
 # プラグイン本体
-# add_subdirectory(src)
+add_subdirectory(src/AudioPlugin)
 
 
 # テスト
