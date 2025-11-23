@@ -24,18 +24,16 @@ FetchContent_MakeAvailable(catch2)
 enable_testing()
 
 # JUCE
-# OS 判定
 if(WIN32)
-    # Windows 側の JUCE のパス
     set(JUCE_PATH "C:/Users/Ygg/source/libs/JUCE")
+    set(JUCE_BINARY_DIR "${CMAKE_BINARY_DIR}/JUCE_win")
 elseif(UNIX)
-    # WSL/Linux 側の JUCE のパス
     set(JUCE_PATH "${CMAKE_SOURCE_DIR}/libs/JUCE")
+    set(JUCE_BINARY_DIR "${CMAKE_BINARY_DIR}/JUCE_wsl")
 endif()
 
-# JUCE を読み込む
 if(EXISTS "${JUCE_PATH}/CMakeLists.txt")
-    add_subdirectory(${JUCE_PATH})
+    add_subdirectory(${JUCE_PATH} ${JUCE_BINARY_DIR})
 else()
     message(FATAL_ERROR "JUCE not found at ${JUCE_PATH}")
 endif()
