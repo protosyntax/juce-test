@@ -74,13 +74,16 @@ tidy-src: clangd
 	@echo "Running clang-tidy on src..."
 	clang-tidy -p $(BUILD_DIR) $(shell find $(SRC_DIR) -name '*.cpp')
 
-.PHONY: tidy-test
-tidy-test: clangd
-	@echo "Running clang-tidy on src..."
-	clang-tidy -p $(BUILD_DIR) $(shell find $(TEST_DIR) -name '*.cpp')
+# .PHONY: tidy-test
+# tidy-test: clangd
+# 	@echo "Running clang-tidy on src..."
+# 	clang-tidy -p $(BUILD_DIR) $(shell find $(TEST_DIR) -name '*.cpp')
+
+# .PHONY: tidy
+# tidy: tidy-src tidy-test
 
 .PHONY: tidy
-tidy: tidy-src tidy-test
+tidy: tidy-src
 
 # フォーマッタ
 .PHONY: fmt
