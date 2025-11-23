@@ -14,3 +14,5 @@
 1. ビルドが通るかチェック`cmake -B build -G Ninja`
 
 1. こけたら`docs/memo.md`を読んで対処する
+
+参考：https://qiita.com/tomoyanonymous/items/97cae1b83805ebcc2d00

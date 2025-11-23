@@ -13,7 +13,6 @@ BUILD_TYPE := Debug
 CMAKE := cmake
 NINJA := ninja
 
-
 # デフォルトターゲット
 .PHONY: all
 all: build
@@ -37,11 +36,9 @@ clean:
 	@echo "Cleaning build directory..."
 	rm -rf $(BUILD_DIR)
 
-
 # 再ビルド
 .PHONY: rebuild
 rebuild: clean all
-
 
 # clangd 用 compile_commands.json 更新
 .PHONY: clangd
@@ -49,10 +46,22 @@ clangd: configure
 	@echo "Updating compile_commands.json..."
 	@cp $(BUILD_DIR)/compile_commands.json .
 
-
 # Ninja の詳細ビルドログを出力
 .PHONY: log
 log: configure
 	@echo "Building project with log..."
 	$(NINJA) -C $(BUILD_DIR) -v > $(BUILD_DIR)/build.log 2>&1
 	@echo "Build log: $(BUILD_DIR)/build.log"
+
+# -------------------------------
+# テストターゲット（cf. docs/test-memo.md）
+# -------------------------------
+.PHONY: test
+test: build
+	@echo "Running tests..."
+	$(CMAKE) --build $(BUILD_DIR) --target test
+
+.PHONY: ctest
+ctest: build
+	@echo "Running tests with ctest..."
+	ctest --test-dir $(BUILD_DIR) --output-on-failure

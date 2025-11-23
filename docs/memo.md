@@ -232,7 +232,4 @@ sudo apt install -y \
 ```
 → WebKitGTK 4.0 は見つからない が、GTK は OK
 → wslの標準レポジトリに`libwebkit2gtk-4.0-dev`はないらしい
-
-しょうがないのでWebBrowserモジュールを無効化してビルドする
-
-
+→ しょうがないので一旦無視する
