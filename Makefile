@@ -13,6 +13,10 @@ BUILD_TYPE := Debug
 CMAKE := cmake
 NINJA := ninja
 
+# ソースディレクトリ
+SRC_DIR := src
+TEST_DIR := test
+
 # デフォルトターゲット
 .PHONY: all
 all: build
@@ -46,16 +50,14 @@ clangd: configure
 	@echo "Updating compile_commands.json..."
 	@cp $(BUILD_DIR)/compile_commands.json .
 
-# Ninja の詳細ビルドログを出力
+# Ninja の詳細ビルドログ
 .PHONY: log
 log: configure
 	@echo "Building project with log..."
 	$(NINJA) -C $(BUILD_DIR) -v > $(BUILD_DIR)/build.log 2>&1
 	@echo "Build log: $(BUILD_DIR)/build.log"
 
-# -------------------------------
-# テストターゲット（cf. docs/test-memo.md）
-# -------------------------------
+# テスト
 .PHONY: test
 test: build
 	@echo "Running tests..."
@@ -65,3 +67,23 @@ test: build
 ctest: build
 	@echo "Running tests with ctest..."
 	ctest --test-dir $(BUILD_DIR) --output-on-failure
+
+# 文法チェック
+.PHONY: tidy-src
+tidy-src: clangd
+	@echo "Running clang-tidy on src..."
+	clang-tidy -p $(BUILD_DIR) $(shell find $(SRC_DIR) -name '*.cpp')
+
+.PHONY: tidy-test
+tidy-test: clangd
+	@echo "Running clang-tidy on src..."
+	clang-tidy -p $(BUILD_DIR) $(shell find $(TEST_DIR) -name '*.cpp')
+
+.PHONY: tidy
+tidy: tidy-src tidy-test
+
+# フォーマッタ
+.PHONY: fmt
+fmt:
+	@echo "Running clang-format..."
+	clang-format -i $(shell find $(SRC_DIR) $(TEST_DIR) -name '*.cpp' -o -name '*.h')
