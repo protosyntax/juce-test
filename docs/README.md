@@ -45,7 +45,7 @@ WSL 上の Debian を利用し、Clang、Ninja、CMake などの開発環境を�
    touch test.cpp
    ```
 
-   `test/test.cpp`：
+   `test/test.cpp`（動作確認用）：
 
    ```cpp
    #define CATCH_CONFIG_MAIN
@@ -80,7 +80,7 @@ WSL 上の Debian を利用し、Clang、Ninja、CMake などの開発環境を�
    cd ..
    ```
 
-2. 公式 example をコピー（動作確認用）：
+2. 公式 example をコピー。`src/`配下に`AudioPlugin/`の中身をコピーする（動作確認用）：
 
    ```bash
    cp -r ./libs/JUCE/examples/CMake/AudioPlugin ./src
