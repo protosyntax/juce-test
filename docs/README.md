@@ -12,15 +12,15 @@ WSL 上の Debian を利用し、Clang、Ninja、CMake などの開発環境を�
 
 2. Clang・CMake・Ninja のインストール（WSL / Debian）
 
-```bash
-sudo apt update
-sudo apt install -y   clang clang-tools cmake ninja-build   build-essential pkg-config
-```
-```bash
-clang --version
-cmake --version
-ninja --version
-```
+	```bash
+	sudo apt update
+	sudo apt install -y   clang clang-tools cmake ninja-build   build-essential pkg-config
+	```
+	```bash
+	clang --version
+	cmake --version
+	ninja --version
+	```
 
 3. Debian上の任意の場所に作業ディレクトリを作成：
 
