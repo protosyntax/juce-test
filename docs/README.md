@@ -9,13 +9,32 @@ WSL 上の Debian を利用し、Clang、Ninja、CMake などの開発環境を�
 ## 1. WSL と作業ディレクトリの準備
 
 1. WSL をインストール（今回はDebian）。
-2. Debian上の任意の場所に作業ディレクトリを作成：
+
+2. Clang・CMake・Ninja のインストール（WSL / Debian）
+
+### 2.1 インストール
+
+```bash
+sudo apt update
+sudo apt install -y   clang clang-tools cmake ninja-build   build-essential pkg-config
+```
+
+### 2.2 バージョン確認
+
+```bash
+clang --version
+cmake --version
+ninja --version
+```
+
+
+3. Debian上の任意の場所に作業ディレクトリを作成：
 
    ```bash
    mkdir ~/juce-test
    cd ~/juce-test
    ```
-3. サブディレクトリを作成：
+4. サブディレクトリを作成：
 
    ```bash
    mkdir libs src test
