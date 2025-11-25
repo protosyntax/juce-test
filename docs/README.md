@@ -45,7 +45,7 @@ WSL 上の Debian を利用し、Clang、Ninja、CMake などの開発環境を�
    touch test.cpp
    ```
 
-   内容：
+   `test/test.cpp`：
 
    ```cpp
    #define CATCH_CONFIG_MAIN
